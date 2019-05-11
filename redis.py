@@ -12,9 +12,7 @@ class Employee:
             print(self.name, 'is working...')
 
 pool = redis.ConnectionPool(host='localhost', port=6379, decode_responses=True) 
-r = redis.Redis(connection_pool=pool)
-#r.set('gender', 'male')   
-#print(r.get('gender'))   
+r = redis.Redis(connection_pool=pool) 
 em  = Employee('abc', 22, 'waiter')
 em_dmp  = pickle.dumps(em)
 r.hset('employees', 'no.1' , em_dmp)
