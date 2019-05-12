@@ -1,0 +1,1 @@
+避免将自己的项目文件和要导入的依赖文件重名， 例如import redis不要再使用redis.py, 参考 https://stackoverflow.com/questions/15649222/redis-py-attributeerror-module-object-has-no-attribute 
