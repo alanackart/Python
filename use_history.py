@@ -36,6 +36,7 @@ print (sqlcmd)
 conn.execute(sqlcmd)
 conn.commit()
 print ("records inserted & commited successfully")
+"""
 sqlcmd =  "SELECT id, live_time from use_log"
 cursor = conn.execute(sqlcmd)
 row=cursor.fetchone()
@@ -55,5 +56,5 @@ writer.writerows(table_data)
 f.close()
 print ("export successfuly at %s" % (time.time()))
 
-
+"""
 conn.close()
