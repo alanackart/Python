@@ -7,15 +7,18 @@ import csv
 import sys
 import time
 import os
+from os.path import expanduser
 
-conn = sqlite3.connect('kobra.db')
+homepath = expanduser("~") 
+db_path = homepath + "/kobra.db"
+output_csv = homepath + "/use_history.csv"
+print ("working directory  is %s " % (homepath) )
+print ("ouput csv path  is %s " % (output_csv) )
+print ("db_path is %s" % (db_path) )
+conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 conn.row_factory=sqlite3.Row
-dirpath = os.getcwd()
-output_csv = dirpath + "/use_history.csv"
-print ("working directory  is %s " % (dirpath) )
-print ("ouput csv path  is %s " % (output_csv) )
-print ("Opened database successfully");
+
 try:
     conn.execute('''CREATE TABLE USE_LOG 
          (ID TEXT     NOT NULL,
@@ -52,18 +55,5 @@ writer.writerows(table_data)
 f.close()
 print ("export successfuly at %s" % (time.time()))
 
-"""
-for row in cursor:
-   print "ID = ", row[0]
-   print "live_time = ", row[1]
-print ("query successfuly")
-"""
-
-"""
-cursor = conn.execute("SELECT count(1) from use_log")
-for row in cursor:
-   print "rows = ", row[0]
-print ("query successfuly")
-"""
 
 conn.close()
