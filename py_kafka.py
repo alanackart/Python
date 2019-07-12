@@ -55,7 +55,7 @@ def generate_bootstrap_data():
 def market_data_transfer():
     client = KafkaClient(hosts='192.168.234.19:9092')
     producer = client.topics['MakerEventNew'.encode('utf8')].get_sync_producer()
-    consumer = KafkaConsumer('MakerEventNew', group_id='I\'m Albert', bootstrap_servers='172.19.223.70:9035')
+    consumer = KafkaConsumer('MakerEventNew', group_id='I\'m alan', bootstrap_servers='172.19.223.70:9035')
     for msg in consumer:
         producer.produce(msg.value)
 
