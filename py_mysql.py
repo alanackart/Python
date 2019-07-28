@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#pip install MySQL-python
 import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
