@@ -7,4 +7,4 @@
 - redis lua script demo : [redis-lua.py](https://github.com/alanackart/Python/blob/master/redis-lua.py)
 - dump and load objects redis demo: [redis_dump_object.py](https://github.com/alanackart/Python/blob/master/redis_dump_object.py)
 - gui show running process in wxpython: [running process.py](https://github.com/alanackart/Python/blob/master/running%20process.py)
-- a simple program constantly send message to every eatablished connection[python_server.py](https://github.com/alanackart/Python/blob/master/python_server.py)
+- a simple program constantly send message to every eatablished connection: [python_server.py](https://github.com/alanackart/Python/blob/master/python_server.py)
