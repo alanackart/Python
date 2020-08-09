@@ -1,11 +1,12 @@
+"""
+organize file by date
+"""
 import unittest
 import os
 from datetime import datetime
 from pathlib import Path
 
-"""
-organize file by date
-"""
+
 def make_full_path(prefix, filename):
     return prefix + "\\" + filename
 
@@ -13,7 +14,7 @@ def make_full_path(prefix, filename):
 class MyTestCase(unittest.TestCase):
 
     def test_something(self):
-        paths = r'G:'
+        paths = r'G:\DCIM\101ND750'
         for filename in os.listdir(paths):
             print(filename)
             fullPath = make_full_path(paths, filename)
@@ -25,7 +26,11 @@ class MyTestCase(unittest.TestCase):
                 print(folder)
                 target = make_full_path(folder, filename)
                 print(target)
-                os.rename(fullPath, target)
+                try:
+                    os.rename(fullPath, target)
+                except FileExistsError as err:
+                    print("FileExistsError: {0}".format(err))
+                    os.remove(fullPath)
 
 
 if __name__ == '__main__':
