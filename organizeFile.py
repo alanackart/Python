@@ -5,6 +5,7 @@ import unittest
 import os
 from datetime import datetime
 from pathlib import Path
+import shutil
 
 
 def make_full_path(prefix, filename):
@@ -14,23 +15,26 @@ def make_full_path(prefix, filename):
 class MyTestCase(unittest.TestCase):
 
     def test_something(self):
-        paths = r'G:\DCIM\101ND750'
-        for filename in os.listdir(paths):
+        source_dir = r'G:\DCIM\102ND750'
+        target_dir = r'F:\Nikon'
+        for filename in os.listdir(source_dir):
             print(filename)
-            fullPath = make_full_path(paths, filename)
-            if not Path(fullPath).is_dir():
-                ts = int(os.path.getmtime(fullPath))
-                folder = make_full_path(paths, datetime.utcfromtimestamp(ts).strftime('%Y%m%d'))
+            source_file_path = make_full_path(source_dir, filename)
+            if not Path(source_file_path).is_dir():
+                ts = int(os.path.getmtime(source_file_path))
+                folder = make_full_path(target_dir, datetime.utcfromtimestamp(ts).strftime('%Y%m%d'))
                 if not Path(folder).exists():
                     os.makedirs(folder)
                 print(folder)
-                target = make_full_path(folder, filename)
-                print(target)
+                target_name = make_full_path(folder, filename)
+                print(target_name)
                 try:
-                    os.rename(fullPath, target)
-                except FileExistsError as err:
+                    if Path(target_name).exists():
+                        print(target_name + " exist!")
+                    else:
+                        shutil.move(source_file_path, target_name)
+                except Exception as err:
                     print("FileExistsError: {0}".format(err))
-                    os.remove(fullPath)
 
 
 if __name__ == '__main__':
